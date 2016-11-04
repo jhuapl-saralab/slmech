@@ -1,0 +1,8 @@
+*.vo
+*.glob
+TAGS
+*~
+.depend
+foo*
+sl-irad-slides*
+old/
