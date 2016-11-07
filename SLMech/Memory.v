@@ -154,7 +154,7 @@ Module Key <: OrderedTypeWithLeibniz.
    assert (Transitive lt).
    unfold Transitive.
    apply lt_trans.
-   apply (Build_StrictOrder keytype lt H H0).
+   apply (Build_StrictOrder lt H H0).
  Qed.
  Unset Implicit Arguments.
  
@@ -1667,7 +1667,7 @@ Module Var <: OrderedTypeWithLeibniz.
     assert (Transitive lt).
     unfold Transitive.
     apply lt_trans.
-    apply (Build_StrictOrder t lt H H0).
+    apply (Build_StrictOrder lt H H0).
   Qed.
   Unset Implicit Arguments.
   

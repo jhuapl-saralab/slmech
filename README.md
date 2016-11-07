@@ -55,7 +55,7 @@ eliminate as many of these axioms as possible in the near future.
 Dependencies
 ============
 
-SLMech depends on Coq. It has been tested against version 8.4.
+SLMech depends on Coq. It has been tested against version 8.5.
 
 Building
 ========

@@ -432,7 +432,7 @@ Section Expression.
     Qed.
 
     Definition eq_expr_equiv : Equivalence eq_expr :=
-      Build_Equivalence expr eq_expr eq_expr_refl eq_expr_sym eq_expr_trans.
+      Build_Equivalence eq_expr eq_expr_refl eq_expr_sym eq_expr_trans.
 (*    Instance expr_setoid : Setoid expr :=
       { equiv := eq_expr; setoid_equiv := eq_expr_equiv }.*)
 
@@ -562,7 +562,7 @@ Definition vleb (ov1 ov2 : option val) : option bool := promote_bool Z.leb ov1 o
 
   Definition eq_bexpr_equiv : forall (s : store), Equivalence (eq_bexpr s).
     intros s.
-    apply (Build_Equivalence bexpr (eq_bexpr s) (eq_bexpr_refl s) (eq_bexpr_sym s) (eq_bexpr_trans s)).
+    apply (Build_Equivalence (eq_bexpr s) (eq_bexpr_refl s) (eq_bexpr_sym s) (eq_bexpr_trans s)).
   Defined.
   
 (*  Instance bexpr_setoid : forall (s : store), Setoid bexpr :=

@@ -141,7 +141,7 @@ with step : atom -> (term * state) -> (term * state) -> Prop :=
            base_pointer a c ->
            (forall (x' : var), memaddr <> x' -> err <> x' -> (s l x') = (s' l x')) ->
            (s' l memaddr = Some (vaddr a)) ->
-           (s' l err = Some ERR_SUCCESS) ->
+           (s' l err = Some ProgramData.ERR_SUCCESS) ->
            step (pcons err memaddr e)(skip, (mkst s l h d)) (skip, (mkst s' l h d'))
 
   | step_pcons_oom :
@@ -150,7 +150,7 @@ with step : atom -> (term * state) -> (term * state) -> Prop :=
 
            (* out of memory! *)
            (forall (x' : var), err <> x' -> (s l x') = (s' l x')) ->
-           (s' l err = Some ERR_ERROR) -> 
+           (s' l err = Some ProgramData.ERR_ERROR) ->
            step (pcons err memaddr e)(skip, (mkst s l h d))(skip, (mkst s' l h d))
 
   | step_pcons_fail :

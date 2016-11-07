@@ -1536,7 +1536,7 @@ Lemma bar : forall (x y z memaddr err : var)(s : store_f)(l : locals)
                             local z skip;;
                             
                             〈err, memaddr〉 ≔ alloc(2);;
-                            (ifelse (err == eimm (Some ERR_SUCCESS) )(
+                            (ifelse (err == eimm (Some ProgramData.ERR_SUCCESS) )(
                               (x  ≔ 2);;
                               (y  ≔ 1);;
                               (z  ≔ memaddr);;
@@ -1552,12 +1552,12 @@ Lemma bar : forall (x y z memaddr err : var)(s : store_f)(l : locals)
                (sexists (fun (a : addr) =>
                            (memaddr ≐ Some (vaddr a)) ☆
                            (a ↦ (vadd (Z_to_uint64 1) (Z_to_uint64 2))) ☆
-                           (err ≐ Some ERR_SUCCESS) ☆
+                           (err ≐ Some ProgramData.ERR_SUCCESS) ☆
                            (x ≐ vadd (Z_to_uint64 1) (Z_to_uint64 2)) ☆
                            (y ≐  Z_to_uint64 1) ☆
                            (z ≐ Some (vaddr a))
                         )
-               ) st2 \/ (err ≐ Some ERR_ERROR )st2.
+               ) st2 \/ (err ≐ Some ProgramData.ERR_ERROR )st2.
   intros.
   destruct H.
   program_paths H0.
@@ -1594,7 +1594,7 @@ Lemma bar : forall (x y z memaddr err : var)(s : store_f)(l : locals)
   rewrite <- H21 in H23.
   assumption.
   separate_on_empty_heap.
-  induction ERR_SUCCESS; try discriminate; try destruct (valeq _ _); try discriminate; try obvious_contr.
+  induction ProgramData.ERR_SUCCESS; try discriminate; try destruct (valeq _ _); try discriminate; try obvious_contr.
   program_paths H0.
   left.
   exists a0.
@@ -1608,14 +1608,14 @@ Lemma bar : forall (x y z memaddr err : var)(s : store_f)(l : locals)
   separate_on_empty_heap.
   separate_on_empty_heap.
   separate_on_empty_heap.
-  destruct (valeq ERR_SUCCESS ERR_SUCCESS).
+  destruct (valeq ProgramData.ERR_SUCCESS ProgramData.ERR_SUCCESS).
   try optional_equality.
   try obvious_contr.
-  induction ERR_SUCCESS; try discriminate; try destruct (valeq _ _); try discriminate; try obvious_contr.
+  induction ProgramData.ERR_SUCCESS; try discriminate; try destruct (valeq _ _); try discriminate; try obvious_contr.
   obvious_contr.
-  destruct (valeq ERR_ERROR ERR_SUCCESS).
+  destruct (valeq ProgramData.ERR_ERROR ProgramData.ERR_SUCCESS).
   generalize (error_vals). intro. rewrite e in H. try obvious_contr. try optional_equality.
-  induction ERR_ERROR, ERR_SUCCESS; try discriminate; try destruct (valeq _ _); try discriminate; try obvious_contr.
+  induction ProgramData.ERR_ERROR, ProgramData.ERR_SUCCESS; try discriminate; try destruct (valeq _ _); try discriminate; try obvious_contr.
   program_paths H0.
   right.
   simpl.
